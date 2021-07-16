@@ -1,0 +1,527 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+.hero {
+height: 100vh;
+width: 100%;
+background-color: rgb(50, 89, 163);
+position: relative;
+}
+
+nav {
+position: sticky;
+top: 0px;
+height: 10vh;
+background-color:rgb(50, 89, 163);
+display: flex;
+justify-content: space-between;
+align-items: center;
+border-bottom: 1px solid white;
+padding-left: 10%;
+padding-right: 10%;
+}
+
+.logo {
+color: white;
+font-size: 25px;
+}
+
+.nav-links {
+    list-style-type: none;
+}
+
+.nav-links li {
+    display: inline-block;
+    padding: 10px 10px;
+
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+}
+
+
+.contactbar {
+    color: white;
+    background-color: rgb(50, 146, 163);
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+div.contactbar ul li {
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+.menu-icon {
+    width: 35px;
+    height: 4px;
+    background-color: white;
+    margin: 6px 0;
+}
+
+.menu {
+    display: none;
+}
+
+.jumbotron {
+    margin: 10px;
+    padding: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-basis: 40%;
+}
+
+.info {
+flex: 1;
+margin: 10px;
+padding: 10px;
+}
+
+.slide {
+    height: 40vh;
+    width: 60vh;
+    flex: 1;
+
+    border-radius: 10px;
+    /* -webkit-box-shadow: 1px 1px 1px 1px rgb(82, 84, 92);  Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+
+    -moz-box-shadow:    1px 1px 1px 1px rgb(82, 84, 92);  Firefox 3.5 - 3.6
+    box-shadow:         1px 1px 1px 1px rgb(82, 84, 92);  Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+/* item upload page */
+
+.form_container {
+    display: flex;
+    justify-content: center;
+    flex-basis: 80%;
+}
+
+
+.upload_form {
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    padding: 15px;
+    height: auto;
+}
+
+.flex {
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form_group {
+    width: 100%;
+    margin: 10px 0;
+}
+
+input[type="text"], select {
+    display: inline-block;
+    width: 100%;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 12px 20px;
+    box-shadow: 0.5px 0.5px 0.5px 0.5px rgb(63, 59, 59) ;
+}
+
+textarea {
+    border-radius: 4px;
+    box-shadow: 0.5px 0.5px 0.5px 0.5px rgb(63, 59, 59) ;
+    width: 100%;
+}
+
+#upload_btn {
+    border-radius: 3px;
+    padding: 5px 10px;
+    color: white;
+    background-color: rgb(50, 89, 163);
+    cursor: pointer;
+}
+
+.input_error, .alert-warning {
+    color: red;
+}
+
+.alert-success {
+    background-color: green;
+    color: white;
+}
+
+
+/* item upload page end*/
+
+/* items page */
+.items {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+    
+.item {
+    /* height: 30vh; */
+    min-width: 25vw;
+    border-radius: 5px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.image-container {
+    width: 150px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    margin-left: 5px;
+    background-color: rgb(223, 223, 235);
+    border-radius: 5px;
+    /* flex: 2; */
+}
+
+.item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.item-body {
+    margin-top: 5px;
+    margin-right: 5px;
+    /* flex: 3; */
+}
+
+.item-details {
+    list-style-type: none;
+    font-size: 14px;
+    padding: 0px 10px;
+} 
+
+.item-details li {
+    padding: 2px 0px;
+}
+
+.item-admin ul {
+    list-style-type: none;
+}
+
+.item-admin ul li{
+    padding: 3px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-top: 3px;
+    margin-right: 2px;
+    text-align: center;
+}
+
+
+#delete_form {
+    background-color: #f2f2f2;
+    border-radius: 0px;
+    padding: 0px;
+    height: auto;
+}
+
+#delete_btn, #edit_btn {
+    font-size: 12px;
+}
+
+
+#delete_btn:hover {
+    color: white;
+    background-color: red;
+    transform: scale(1.3,1.3);
+}
+
+#edit_btn:hover {
+    color: white;
+    background-color: rgb(0, 17, 255);
+    transform: scale(1.2,1.2);
+}
+
+.listed {
+    color: white;
+    background-color: rgb(109, 160, 33);
+}
+
+.unlisted {
+    color: white;
+    background-color: grey;
+}
+
+.listed:hover, .unlisted:hover {
+    transform: scale(1.2,1.2);
+}
+
+.overlay {
+position: relative;
+}
+.overlay h2 {
+    text-align: center;
+    color: white;
+    padding: 50px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 95%;
+    width: 95%;
+    position: absolute;
+    left: 6px;
+}
+
+/* price modal */
+#price_modal {
+    display: none;
+    position: fixed; 
+    padding-top: 50px;
+    left: 0; 
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content {
+    /* position: relative; 
+    background-color: white;
+    padding: 20px; 
+    margin: auto; 
+    width: 50%;   */
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+.close-btn {
+    margin-right: 15px;
+    float: right; 
+    color: lightgray; 
+    font-size: 30px;  
+    font-weight: bold;
+    cursor: pointer;
+}
+.close-btn:hover {
+    color: darkgray;
+}
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+/* price modal ends */
+
+
+
+/* items page ends */
+
+
+/* ITEM DETAILS PAGE */
+
+.itempage {
+margin: 30px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.itempage-image {
+    flex: 1;
+}
+
+.itempage-body
+
+{
+    flex: 2;
+}
+
+#itempage-image {
+    border-radius: 5px;
+}
+
+.itempage-details {
+    border-bottom: 2px solid #ccc;
+}
+
+th, td {
+    padding: 5px;
+    border-bottom: 2px solid #ccc;
+}
+
+/* ITEM DETAILS PAGE END*/
+
+
+@media only screen and (max-width: 768px) {
+ 
+.nav {
+    display: flex;
+    justify-content: space-between;
+    
+}    
+
+.nav-links {
+    /* background-color: yellow; */
+    background-color: rgb(50, 89, 163);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    right: -10px;
+    top: 10vh;
+    width: 50%;
+    height: 80vh;
+}
+
+.nav-links.show {
+    display: flex;
+}
+
+.nav-links li{
+    
+    /* display: none; */
+    list-style-type: none;
+}
+    
+.menu-icon {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+.menu {
+    display: inline;
+    cursor: pointer;
+}
+
+.menu:hover {
+    padding: 5px;
+    border: 1px solid blue;
+    border-radius: 5px;
+}
+
+div.contactbar ul li {
+    font-size: 11px;
+    padding: 5px 0px;
+    display: inline-block;
+}
+
+.jumbotron {
+    margin: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.info {
+flex: 1;
+margin: 5px;
+padding: 20px;
+}
+
+.slide {
+    flex: 1;
+    border-radius: 5px;
+    height: 40vh;
+    width: 90%;
+}
+
+/* ITEMS PAGE */
+
+.items {
+padding: 5px;
+flex-direction: column;
+align-items: center;
+}
+
+.item {
+    width: 95vw;
+    border-radius: 5px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.image-container {
+    width: 120px;
+    height: 90px;
+    /* flex: 2; */
+}
+
+#delete_btn, #edit_btn {
+    font-size: 10px;
+}
+
+
+/* ITEMS PAGE ENDS*/
+
+/* ITEM DETAILS PAGE */
+
+.itempage {
+margin: 30px;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.itempage-image {
+    flex: 1;
+}
+
+.itempage-body
+
+{
+    flex: 2;
+}
+
+#itempage-image {
+    border-radius: 5px;
+}
+
+.itempage-details {
+    border-bottom: 2px solid #ccc;
+}
+
+th, td {
+    padding: 5px;
+    border-bottom: 2px solid #ccc;
+}
+
+/* ITEM DETAILS PAGE END*/
+
+/* ITEM UPLOAD PAGE */
+
+
+
+/* ITEM UPLOAD PAGE END*/
+
+}
+
+

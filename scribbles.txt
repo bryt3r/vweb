@@ -1,0 +1,6 @@
+mark as sold with overlay & sold text
+..final saleprice
+..bought by
+..final profit
+
+relist with editable details & images of sold item & save as new item
