@@ -7,8 +7,8 @@ $errors = [];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST['id']?? "";
     $lister = $_POST['lister']?? "";
-    $price_setter = $_POST['price_setter'];
-    $sold = $_POST['sold'];
+    $price_setter = $_POST['price_setter']?? "";
+    $sold = $_POST['sold']?? "";
 
     if ($id && $lister) {
         if ($lister == 'listed') {
