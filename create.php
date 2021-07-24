@@ -13,7 +13,7 @@ $hdd_sizes = ['64GB', '120GB', '250GB', '256GB', '320GB', '500GB', '1TB'];
 $screen_sizes = ['10 inches', '11 inches', '12 inches', '13 inches', '14 inches', '15 inches', '17 inches'];
 
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && !$_POST['multi_image']) {
 
     $item_type = checkPost('item_type');
     $item_condition = checkPost('item_condition');
@@ -150,9 +150,6 @@ function uploadImage($item_type, $item_brand)
     }
     $file = $_FILES['item_image'];
     $filename = $file['name'];
-    // $dotpos = strpos($filename, '.'); //STILL NEED TO TREAT CASES WITH MULTIPLE DOTS IN FILE NAME
-    // //  and also restrict file ext types.
-    // $ext = substr($filename, $dotpos + 1);
     $ext = pathinfo($filename, PATHINFO_EXTENSION);
     $ext = strtolower($ext);
     $uploaded_file = __DIR__ . "/images/" . $item_type . "_" . $item_brand . "_" . time() . "." . $ext;
@@ -164,7 +161,6 @@ function uploadImage($item_type, $item_brand)
         // print_r($fileDetails);
         return $fileDetails;
     }
-    // move_uploaded_file($file['tmp_name'], __DIR__."/images/".$item_brand.".".$ext);
 
 }
 

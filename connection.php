@@ -33,13 +33,13 @@ class Connection
         $statement->bindValue('description', $data['item_description']);
         $statement->bindValue('image', $data['item_image']);
         $statement->bindValue('image_ext', $data['image_ext']);
-        $statement->bindValue('price_set', false);
+        $statement->bindValue('price_set', 0);
         $statement->bindValue('costprice', 0);
         $statement->bindValue('sellingprice', 0);
         $statement->bindValue('discount', 0);
         $statement->bindValue('saleprice', 0);
-        $statement->bindValue('listed', false);
-        $statement->bindValue('sold', false);
+        $statement->bindValue('listed', 0);
+        $statement->bindValue('sold', 0);
         $statement->bindValue('date_created', date('Y-m-d H:i:s'));
         $statement->execute();
     }
@@ -49,7 +49,7 @@ class Connection
         $statement = $this->pdo->prepare("SELECT * FROM items WHERE item_id = :id");
         $statement->bindValue('id', $id);
         $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $statement->fetch(PDO::FETCH_ASSOC);
     
     }
 
@@ -87,7 +87,7 @@ class Connection
     {
         $statement = $this->pdo->prepare("UPDATE items SET item_sold = :sold WHERE item_id = :id");
         $statement->bindValue('id', $id);
-        $statement->bindValue('sold', false);
+        $statement->bindValue('sold', 0);
         $statement->execute();
     }
 
@@ -95,7 +95,7 @@ class Connection
     {
         $statement = $this->pdo->prepare("UPDATE items SET item_sold = :sold WHERE item_id = :id");
         $statement->bindValue('id', $id);
-        $statement->bindValue('sold', true);
+        $statement->bindValue('sold', 1);
         $statement->execute();
     }
 
@@ -104,7 +104,7 @@ class Connection
     {
         $statement = $this->pdo->prepare("UPDATE items SET item_listed = :listed WHERE item_id = :id");
         $statement->bindValue('id', $id);
-        $statement->bindValue('listed', false);
+        $statement->bindValue('listed', 0);
         $statement->execute();
     }
 
@@ -112,13 +112,80 @@ class Connection
     {
         $statement = $this->pdo->prepare("UPDATE items SET item_listed = :listed WHERE item_id = :id");
         $statement->bindValue('id', $id);
-        $statement->bindValue('listed', true);
+        $statement->bindValue('listed', 1);
         $statement->execute();
     }
 
     public function removeData($id)
     {
         $statement = $this->pdo->prepare("DELETE FROM items WHERE item_id = :id");
+        $statement->bindValue('id', $id);
+        $statement->execute();
+    }
+
+    public function insertImage($data)
+    {
+        $statement = $this->pdo->prepare("INSERT INTO images (image_name, image_ext, item_id, date_created) 
+                                        VALUES(:image_name, :image_ext, :item_id, :date_created)");
+        $statement->bindValue('image_name', $data['image_name']);
+        $statement->bindValue('image_ext', $data['image_ext']);
+        $statement->bindValue('item_id', $data['item_id']);
+        $statement->bindValue('date_created', date('Y-m-d H:i:s'));
+        $statement->execute();
+    }
+
+    public function getDataByIdWithImages($id)
+    {
+        $start = 0;
+        $limit = 5;
+        $sql = "SELECT items.item_id as item_id, items.item_type as item_type, items.item_condition as item_condition,
+                items.item_brand as item_brand, items.item_model as item_model, items.item_ram as item_ram,
+                items.item_hdd as item_hdd, items.item_screen as item_screen, items.item_description as item_description,
+                items.item_image as item_image, items.image_ext as image_ext, items.item_saleprice as item_saleprice,
+                images.image_id as image_id, images.item_id as image_item_id, images.image_name as image_name, images.image_ext as images_ext 
+        FROM items
+        LEFT JOIN images ON items.item_id=images.item_id
+        WHERE items.item_id=$id";
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
+       
+
+        $data = [];
+        while ($row = $statement->fetch()) {
+            $image = [
+                'image_id' => $row['image_id'],
+                'image_name' => $row['image_name'],
+                'image_ext' => $row['images_ext'],
+            ];
+            if (!isset($data[$row['item_id']])) {
+                $data[$row['item_id']] = [
+                    'item_id' => $row['item_id'],
+                    'item_type' => $row['item_type'],
+                    'item_condition' => $row['item_condition'],
+                    'item_brand' => $row['item_brand'],
+                    'item_model' => $row['item_model'],
+                    'item_ram' => $row['item_ram'],
+                    'item_hdd' => $row['item_hdd'],
+                    'item_screen' => $row['item_screen'],
+                    'item_description' => $row['item_description'],
+                    'item_image' => $row['item_image'],
+                    'image_ext' => $row['image_ext'],
+                    'item_saleprice' => $row['item_saleprice'],
+                    'images' => [$image]
+                ];
+            } else {
+                $data[$row['item_id']]['images'][] = $image;
+            }
+        }
+        return $data;
+        
+    }
+
+
+    public function removeImage($id)
+    {
+        $statement = $this->pdo->prepare("DELETE FROM images WHERE image_id = :id");
         $statement->bindValue('id', $id);
         $statement->execute();
     }

@@ -1,15 +1,13 @@
 <?php
 
-$connection = require_once "connection.php";
 require_once 'multi_image.php';
-if ($_GET) {
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $id = $_GET['id'];
-    $item = $connection->getDataById($id);
-    $item = $item[0];
+    $item = $connection->getDataByIdWithImages($id)[$id];
+    // $item = $connection->getDataById($id);
 }else{
     $id = $_POST['id'];
     $item = $connection->getDataById($id);
-    $item = $item[0];
 }
 
 $page_title = "Item Details";
@@ -27,6 +25,20 @@ include 'partials/header.php';
             <h3>
             <?php echo isset($item['item_price']) ? $item['item_price']." " :"PRICE NOT SET" ?>
             </h3>
+
+<div class="multi-images">
+    <?php foreach ($item['images'] as $image):?>
+        <div>
+        <img class="single-image" src="<?php echo isset($image['image_name']) ? "res_images/" . $image['image_name'] . "_res." . $image['image_ext'] : ""; ?>" alt="">                
+        <form action="delete.php" method="POST" id="image_delete">
+        <input type="hidden" name="image_id" value="<?php echo $image['image_id']; ?>">
+        <input type="hidden" name="item_id" value="<?php echo $item['item_id']; ?>">
+        <input type="submit" value="DELETE" id="delete_btn">
+        </form>
+        </div>
+    <?php endforeach; ?>
+    
+</div>
         </div>
        
         <div class="itempage-body">
@@ -61,12 +73,16 @@ include 'partials/header.php';
         </div>
     </div> 
 
+
     <div class="form_container ">
 
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" class="flex upload_form" enctype="multipart/form-data" method="POST">
         <h4>UPLOAD MORE ITEM IMAGES</h4>
         <div class="alert-<?php echo isset($msgClass) ? $msgClass : ""; ?>"><?php echo isset($errorMsg) ? $errorMsg : ""; ?></div>
         <input type="hidden" name="id" value="<?php echo isset($item['item_id']) ? $item['item_id'] : ""; ?>">
+        <input type="hidden" name="multi_image" value="multi_image">
+        <input type="hidden" name="item_type" value="<?php echo isset($item['item_type']) ? $item['item_type'] : ""; ?>">
+        <input type="hidden" name="item_brand" value="<?php echo isset($item['item_brand']) ? $item['item_brand'] : ""; ?>">
  
         <div class="form_group ">
             <label for="item_image"> Picture 1:</label>

@@ -2,7 +2,7 @@
 $connection = require_once "connection.php";
 $id = $_GET['id'];
 $item = $connection->getDataById($id);
-$item = $item[0];
+$item = $item;
 
 $page_title = "Item Details";
 include 'partials/header.php';

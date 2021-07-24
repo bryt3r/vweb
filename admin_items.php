@@ -3,7 +3,7 @@ require_once "updater.php";
 
 $items = $connection->getAllData();
 
-$page_title = "Items";
+$page_title = "Admin Items";
 include 'partials/header.php';
 ?>
 
@@ -61,7 +61,7 @@ include 'partials/header.php';
         <!-- SET PRICE MODAL ENDS -->
 
         <!-- <div onclick="location.href='item_page.php?id=<?php echo $item['item_id']; ?>';" style="cursor: pointer;"> -->
-            <div onclick="location.href='item_page.php?id=<?php echo $item['item_id']; ?>';" style="cursor: pointer;" class="item">
+            <div onclick="location.href='admin_itempage.php?id=<?php echo $item['item_id']; ?>';" style="cursor: pointer;" class="item">
                 <?php echo $soldOpen; ?>
                 <div class="image-container <?php echo isset($item['item_sold']) && $item['item_sold'] ? 'sold-overlay' : 'unsold'; ?>">
                     <img class="item-image" src="<?php echo isset($item['item_image']) ? "res_images/" . $item['item_image'] . "_res." . $item['image_ext'] : ""; ?>" alt="">

@@ -368,7 +368,14 @@ th, td {
     border-bottom: 2px solid #ccc;
 }
 
+.multi-images {
+    display: flex;
+    width: 30%;
+}
+
 /* ITEM DETAILS PAGE END*/
+
+
 
 
 @media only screen and (max-width: 768px) {

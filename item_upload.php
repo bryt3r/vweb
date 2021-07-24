@@ -1,17 +1,18 @@
 <?php
 
+
+
 require_once 'create.php';
 
-$page_title = "Upload Item";
+$page_title = isset($_GET['id']) ? "Edit Item" : "Upload Item";
+
 include 'partials/header.php';
 $formData = [];
-$id = isset($_GET['item_id']) ? $_GET['item_id'] : '';
+$id = isset($_GET['id']) ? $_GET['id'] : '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && $id) {
-    $itemData = $connection->getDataById($id)[0];
+    $itemData = $connection->getDataById($id);
     $formData = $itemData;
-    // print_r($formData);
-    // exit;
 }else{
     $formData = $_POST;
 }
