@@ -37,9 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
             }
             if (empty($errors)) {
-                // save data to db;
-                // uploadImage($item_type)
-                // resizeimage($fileName, $fileExt)
                 $uploaded_file = __DIR__ . "/images/" . $item_type . "_" . $item_brand . "_" . time() . "_" .$key. "." . $fileExt;
                 if (!move_uploaded_file($files['tmp_name'][$key], $uploaded_file)) {
                     return false;
@@ -52,11 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         'item_id' => $item_id,
                     ];
                     resizeimage($uploaded_filename, $fileExt);
-                    // echo '<pre>';
-                    // var_dump($item_id);
-                    // var_dump($filename);
-                    // var_dump($fileExt);
-                    // echo'</pre>';
                     $connection->insertImage($data);
                     header("Location: admin_itempage.php?id=$item_id");
                 }

@@ -174,10 +174,19 @@ class Connection
                     'item_saleprice' => $row['item_saleprice'],
                     'images' => [$image]
                 ];
+                $main_image = [
+                    'image_name' => $row['item_image'],
+                    'image_ext' => $row['images_ext'],
+                ];
+                array_unshift($data[$row['item_id']]['images'], $main_image);
             } else {
                 $data[$row['item_id']]['images'][] = $image;
             }
         }
+        
+        // echo '<pre>';
+        // var_dump($data);
+        // echo '<pre>';
         return $data;
         
     }

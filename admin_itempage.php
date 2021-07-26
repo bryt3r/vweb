@@ -21,7 +21,7 @@ include 'partials/header.php';
             <h3>
                 <?php echo isset($item['item_brand']) ? $item['item_brand']." " :"" ; echo isset($item['item_model']) ? $item['item_model'] :"" ; ?>
             </h3>
-            <img id="itempage-image" src="<?php echo isset($item['item_image']) ? "res_images/".$item['item_image']."_res.".$item['image_ext']:"" ; ?>" alt="">
+            <!-- <img id="itempage-image" src="<?php echo isset($item['item_image']) ? "res_images/".$item['item_image']."_res.".$item['image_ext']:"" ; ?>" alt=""> -->
             <h3>
             <?php echo isset($item['item_price']) ? $item['item_price']." " :"PRICE NOT SET" ?>
             </h3>
@@ -31,7 +31,7 @@ include 'partials/header.php';
         <div>
         <img class="single-image" src="<?php echo isset($image['image_name']) ? "res_images/" . $image['image_name'] . "_res." . $image['image_ext'] : ""; ?>" alt="">                
         <form action="delete.php" method="POST" id="image_delete">
-        <input type="hidden" name="image_id" value="<?php echo $image['image_id']; ?>">
+        <input type="hidden" name="image_id" value="<?php echo isset($image['image_id']) ? $image['image_id']:""; ?>">
         <input type="hidden" name="item_id" value="<?php echo $item['item_id']; ?>">
         <input type="submit" value="DELETE" id="delete_btn">
         </form>
