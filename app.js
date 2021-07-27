@@ -120,20 +120,30 @@ function formDisplay() {
 
 
 // itempage multi-image slideshow starts
+function openModal() {
+    document.getElementById("myModal").style.display = "block";
+}
+  
+function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+}
 
 function showSlide(n){
     var i;
     const slides = document.querySelectorAll('.mySlides');
+    const modal_slides = document.querySelectorAll('.modalSlides');
     const dots = document.querySelectorAll('.dot');
     if (n > slides.length) {slideIndex = 1}    
     if (n < 1) {slideIndex = slides.length}
     for (i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";  
+        modal_slides[i].style.display = "none";  
     }
     for (i = 0; i < dots.length; i++) {
         dots[i].className = dots[i].className.replace(" active", "");
     }
     slides[slideIndex-1].style.display = "block";  
+    modal_slides[slideIndex-1].style.display = "block";  
     dots[slideIndex-1].className += " active";
 }
 

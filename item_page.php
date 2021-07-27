@@ -17,11 +17,11 @@ include 'partials/header.php';
             <!-- <img id="itempage-image" src="<?php echo isset($item['item_image']) ? "res_images/".$item['item_image']."_res.".$item['image_ext']:"" ; ?>" alt=""> -->
             
             <div class="slideshow-container">
-                <?php $i = 1; ?>
+                <?php $i = 1; $m =1; ?>
                 <?php foreach ($item['images'] as $image):?>
                 <div class="mySlides fade">
                     <div class="numbertext"><?php echo $i++  ."/". count($item['images']) ?> </div>
-                    <img class="single-image" src="<?php echo isset($image['image_name']) ? "res_images/" . $image['image_name'] . "_res." . $image['image_ext'] : ""; ?>" alt="" style="width:100%">
+                    <img onclick="openModal();showCurrent(<?php echo $m++ ; ?>)" class="single-image" src="<?php echo isset($image['image_name']) ? "res_images/" . $image['image_name'] . "_res." . $image['image_ext'] : ""; ?>" alt="" style="width:100%">
                 </div>
                 <?php endforeach; ?>
                 <a class="prev" onclick="nextSlide(-1)">&#10094;</a>
@@ -73,6 +73,21 @@ include 'partials/header.php';
                 </tbody>
             </table>
 
+        </div>
+    </div>
+
+    <div id="myModal" class="image_modal">
+     <span class="close cursor" onclick="closeModal()">&times;</span>
+        <div class="imagemodal-content">
+        <?php $k = 1; ?>
+                <?php foreach ($item['images'] as $image):?>
+                <div class="modalSlides fade">
+                    <div class="numbertext"><?php echo $k++  ."/". count($item['images']) ?> </div>
+                    <img class="single-image" src="<?php echo isset($image['image_name']) ? "res_images/" . $image['image_name'] . "_res." . $image['image_ext'] : ""; ?>" alt="" style="width:100%">
+                </div>
+                <?php endforeach; ?>
+                <a class="prev" onclick="nextSlide(-1)">&#10094;</a>
+                <a class="next" onclick="nextSlide(1)">&#10095;</a>
         </div>
     </div>
 
