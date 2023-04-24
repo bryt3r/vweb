@@ -48,7 +48,7 @@ include 'partials/header.php';
             <table class="itempage-details">
                 <thead>
                     <tr>
-                        <th>Header</th>
+                        <th>Item - Header</th>
                         <th></th>
                     </tr>
                 </thead>
